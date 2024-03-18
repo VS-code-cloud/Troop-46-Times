@@ -1,0 +1,89 @@
+@import url("./global.scss");
+
+highlightSection {
+    margin-top: 2vh;
+    display:flex;
+    width: 100%;
+    justify-content: space-between;
+    height: fit-content;
+    .highlight {
+        position: relative;
+        width: 75%;
+        height: fit-content;
+        img {
+            width: 100%;
+            height: auto;
+        }
+        h1 {
+            position: absolute;
+            bottom: 0;
+            font-family: var(--font-main);
+            color: var(--light);
+            background: rgba(0,0,0,0.5);
+            padding: 3%;
+            width: 94%;
+            margin: 0;
+        }
+    }
+
+    /*
+    .post {
+        height: fit-content;
+        width: 20%;
+        padding: 1%;
+        background: hsl(0, 0%, 93%);
+        box-sizing: border-box;
+        h2 {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; 
+                    line-clamp: 2; 
+            -webkit-box-orient: vertical;
+            font-family: var(--font-main);
+            font-weight: 500;
+        }
+        p {
+            font-family: var(--font-text);
+            text-overflow: ellipsis;
+            font-size: 20px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+        img {
+            max-width: 100%;
+        }
+    }
+    */
+
+    .post {
+        height: fit-content;
+        width: 22%;
+        box-sizing: border-box;
+        h2 {
+            box-sizing: border-box;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; 
+                    line-clamp: 2; 
+            -webkit-box-orient: vertical;
+            font-family: var(--font-main);
+            font-weight: 500;
+        }
+        p {
+            font-family: var(--font-text);
+            font-size: 20px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            line-height: 30px;
+        }
+        img {
+            max-width: 100%;
+        }
+    }
+
+    vr {
+        border-left: 1px solid black;
+    }
+}

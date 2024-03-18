@@ -1,0 +1,31 @@
+@import url("./global.scss");
+
+footer {
+    background: var(--dark);
+    color: var(--light);
+    font-family: var(--font-main);
+    font-weight: 300;
+    margin-top:5vh;
+    box-sizing: border-box;
+    padding: 2vw;
+    hr {
+        color:var(--light);
+        background-color: var(--light);   
+    }
+    .links {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 70vw;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        .sublinks {
+            display:flex;
+            align-items: center;
+            a {
+                font-size: 13px;
+                margin-left: 1vw;
+            }
+        }
+    }
+}

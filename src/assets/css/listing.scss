@@ -1,0 +1,58 @@
+listing {
+    display:flex;
+    width: 100%;
+    justify-content: space-between;
+    height: fit-content;
+    margin-top: 5vh;
+    align-items: center;
+    .articleWrap {
+        height: fit-content;
+        width: 70%;
+        box-sizing: border-box;
+        h2 {
+            box-sizing: border-box;
+
+            /* force wrap */
+            display:table;
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+
+    /* line clamp */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1; 
+                    line-clamp: 1; 
+            -webkit-box-orient: vertical;
+            font-family: var(--font-main);
+            font-weight: 500;
+        }
+        .mainText    {
+            font-family: var(--font-text);
+            font-size: 20px;
+            /* force wrap */
+            display:table;
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+
+    /* line clamp */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+            line-height: 30px;
+            
+        }
+    }
+    img {
+        width: 23%;
+        height: 250px; 
+        object-fit: cover;
+    }
+}
