@@ -2,7 +2,7 @@ import React from "react";
 import '../assets/css/listing.scss';
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-const baseUrl = 'http://troop-46-times-backend.onrender.com'
+const baseUrl = 'http://localhost:4000'
 
 let axiosConfig = {
   headers: {

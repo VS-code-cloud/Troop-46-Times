@@ -8,7 +8,7 @@ import Post from "./pages/post";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import axios from "axios";
-const baseUrl = 'http://troop-46-times-backend.onrender.com';
+const baseUrl = 'http://localhost:4000';
 
 
 let axiosConfig = {
