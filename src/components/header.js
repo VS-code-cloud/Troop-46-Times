@@ -5,20 +5,28 @@ import { faSearch } from '@fortawesome/fontawesome-free-solid'
 
 function Navbar() {
   console.log(localStorage.getItem('verified'), sessionStorage.getItem('verified'))
-  const logout = () => {
+  function handleLogout() {
+    console.log('called')
       if (localStorage.getItem('verified')) {
-        localStorage.setItem('verified', null)
+        localStorage.removeItem('verified')
       } else {
-        sessionStorage.setItem('verified', null)
+        sessionStorage.removeItem('verified')
       }
+    window.location.href="/"
   }
+  var loggedIn = false;
+  if (localStorage.getItem('verified') || sessionStorage.getItem('verified')) {
+    loggedIn = true
+  }
+  console.log('loggedIn', loggedIn, localStorage.getItem('verified'))
   return (
       <header className='navbar'>
           <div className='section'>
             <div className='navbar__title navbar__item'><h2><a>Troop 46 Times</a></h2></div>
             <div className='navbar__item'><a href='/'>Home</a></div>
             <div className='navbar__item'><a href='/archives'>Archives</a></div>
-            {(localStorage.getItem('verified') || sessionStorage.getItem('verified')) && (
+            {console.log('test', (localStorage.getItem('verified') || sessionStorage.getItem('verified')))}
+            {loggedIn && (
               <div className='navbar__item'><a href='/approve'>Unverified</a></div>
             )}
           </div>
@@ -28,11 +36,11 @@ function Navbar() {
             <div className="icon"><FontAwesomeIcon icon={faSearch} /></div>
           </div>
           <button className='post'>Post Article</button>
-          {!(localStorage.getItem('verified') || sessionStorage.getItem('verified')) && (
+          {!loggedIn && (
               <button className='login'><a href='/login'>Scribe Login</a></button>
             )}
-          {(localStorage.getItem('verified') || sessionStorage.getItem('verified')) && (
-              <button className='logout' onClick={logout}>Log Out</button>
+          {loggedIn && (
+              <button className='logout' onClick={handleLogout}>Log Out</button>
             )}
             
         </div>
