@@ -7,7 +7,16 @@ import Highlight from "../components/highlight";
 import ArticleListing from '../components/articleListing';
 import Footer from "../components/footer";
 import axios from "axios";
-const baseUrl = 'http://localhost:4000'
+const baseUrl = 'http://troop-46-times-backend.onrender.com';
+
+
+let axiosConfig = {
+  headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      "Access-Control-Allow-Origin": "*",
+  }
+};
+
 function App() {
   const [data, setData] = useState([]);
   const [firstPost, setFirstPost] = useState({});
@@ -16,7 +25,7 @@ function App() {
     console.log('in use effect')
     // React advises to declare the async function directly inside useEffect
     async function getData() {
-      const response = await axios.get(`${baseUrl}/get`);
+      const response = await axios.get(`${baseUrl}/get`, axiosConfig);
       console.log('response', response, response.data)
       let sorted = response.data
       let tFirst = sorted.pop()

@@ -1,0 +1,43 @@
+post {
+    width: 80vw;
+    display:block;
+    margin-left: 50vw;
+    transform: translateX(-50%);
+    margin-bottom: 10vh;
+    .postPage {
+        display:flex;
+        justify-content: space-between;
+        margin-top: 5vh;
+        align-items: center;
+    }
+    h1 {
+        font-family: var(--font-main);
+        font-size: 35px;
+        margin-top: 0;
+    }
+    img {
+        width: 50%;
+        height: 70vh;
+        object-fit: cover;
+        border-radius: 1vw;
+    }
+    .body {
+        font-size: 20px;
+        line-height: 40px;
+        width: 45%;
+        input, textarea, button {
+            box-sizing: border-box;
+            font-size: 0.8vw;
+            padding: 3%;
+            border-radius: .5vw;
+            width: 92%;
+            border: 1px solid var(--accent-2);
+            font-weight: 300;
+            margin-bottom: 2vh;
+            resize: none;
+            font-family: var(--font-main);
+        }
+    }
+    
+
+}

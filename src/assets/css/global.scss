@@ -6,6 +6,8 @@
     --dark: #282424;
     --font-main: "Lexend", sans-serif;
     --font-text: "Spectral", serif;
+    --accent: #551d8d;
+    --accent-2: rgb(134, 69, 198);
 }
 
 .bodyWrapTotal {
@@ -24,4 +26,9 @@ hr {
 
 .hr2 {
     margin: 3vw 0;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: underline;
 }

@@ -22,9 +22,10 @@ footer {
         .sublinks {
             display:flex;
             align-items: center;
-            a {
+            a, p {
                 font-size: 13px;
                 margin-left: 1vw;
+                color: white;
             }
         }
     }

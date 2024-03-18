@@ -6,7 +6,16 @@ import Header from "../components/header";
 import ArticleListing from '../components/articleListing';
 import Footer from "../components/footer";
 import axios from "axios";
-const baseUrl = 'http://localhost:4000'
+const baseUrl = 'http://troop-46-times-backend.onrender.com'
+
+let axiosConfig = {
+  headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      "Access-Control-Allow-Origin": "*",
+  }
+};
+
+
 function Approval() {
   const [data, setData] = useState([]);
   console.log('data', data, !data)
@@ -14,7 +23,7 @@ function Approval() {
     console.log('in use effect')
     // React advises to declare the async function directly inside useEffect
     async function getData() {
-      const response = await axios.get(`${baseUrl}/unverified`);
+      const response = await axios.get(`${baseUrl}/unverified`, axiosConfig);
       console.log('response', response, response.data)
       setData(response.data);
     };

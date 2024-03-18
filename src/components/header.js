@@ -22,7 +22,7 @@ function Navbar() {
   return (
       <header className='navbar'>
           <div className='section'>
-            <div className='navbar__title navbar__item'><h2><a>Troop 46 Times</a></h2></div>
+            <div className='navbar__title navbar__item'><h2><a href='/'>Troop 46 Times</a></h2></div>
             <div className='navbar__item'><a href='/'>Home</a></div>
             <div className='navbar__item'><a href='/archives'>Archives</a></div>
             {console.log('test', (localStorage.getItem('verified') || sessionStorage.getItem('verified')))}
@@ -35,9 +35,9 @@ function Navbar() {
             <input type="text" placeholder="Search"/>
             <div className="icon"><FontAwesomeIcon icon={faSearch} /></div>
           </div>
-          <button className='post'>Post Article</button>
+          <a href="/post"><button className='post'>Post Article</button></a>
           {!loggedIn && (
-              <button className='login'><a href='/login'>Scribe Login</a></button>
+              <a href='/login'><button className='login'>Scribe login</button></a>
             )}
           {loggedIn && (
               <button className='logout' onClick={handleLogout}>Log Out</button>

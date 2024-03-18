@@ -4,7 +4,6 @@ import '../assets/css/highlight.scss';
 function Highlight({data}) {
   const mainRef = useRef(null);
   const sideRef = useRef(null);
-  const imgRef = useRef(null);
   const headerRef = useRef(null);
   const paraRef = useRef(null);
   var newDate =''
@@ -24,12 +23,16 @@ function Highlight({data}) {
     let rawHeight = parseInt(height, 10);
     sideRef.current.style.height = rawHeight + "px";
 
+    let headerHeight = window.getComputedStyle(headerRef.current).height;
+    let rawHH = parseInt(headerHeight, 10);
+
     console.log(paraRef.current.style)
     
     // clamp paragraph text
-    let maxParaHeight = rawHeight-10;
-    let maxLines = Math.floor(maxParaHeight / 30);
-    paraRef.current.style.lineClamp = maxLines;
+    let maxParaHeight = rawHeight- rawHH;
+    let maxLines = Math.floor(maxParaHeight / 30) - 1;
+    paraRef.current.style.lineClamp = maxLines ;
+    console.log('ml', height, rawHeight, maxParaHeight, maxLines);
     paraRef.current.style["-webkit-line-clamp"] = maxLines;
 
     
@@ -40,16 +43,14 @@ function Highlight({data}) {
   return (
       <highlightSection>
         <div className='highlight' ref={mainRef}>
-        <h1>{data?.title}</h1>{data?.name}, {newDate}
           <img src={data?.img}></img>
         </div>
 
         <vr></vr>
 
         <div ref={sideRef} className="post">
-            <p ref={paraRef}>
-              {data?.text}
-            </p>
+            <h2 ref={headerRef}>{data?.title}</h2>
+            <p ref={paraRef}>{data?.text}</p>
         </div>
       </highlightSection>
   ); 

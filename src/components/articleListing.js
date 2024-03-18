@@ -2,7 +2,14 @@ import React from "react";
 import '../assets/css/listing.scss';
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-const baseUrl = 'http://localhost:4000'
+const baseUrl = 'http://troop-46-times-backend.onrender.com'
+
+let axiosConfig = {
+  headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      "Access-Control-Allow-Origin": "*",
+  }
+};
 
 function ArticleListing({data, approving}) {
   console.log('data, approving', data, approving)
@@ -20,13 +27,13 @@ function ArticleListing({data, approving}) {
   }
   function deletePost() {
     console.log('deleting')
-    axios.delete(`${baseUrl}/delete/${data.uid}`).then(()=> (window.location.reload())).catch(error => {
+    axios.delete(`${baseUrl}/delete/${data.uid}`, axiosConfig).then(()=> (window.location.reload())).catch(error => {
       console.log(error)
     })
   }
   function updatePost() {
     console.log('updating')
-    axios.patch(`${baseUrl}/update/${data.uid}`, {'verified': true}).then(()=> (window.location.reload())).catch(error => {
+    axios.patch(`${baseUrl}/update/${data.uid}`, {'verified': true}, axiosConfig).then(()=> (window.location.reload())).catch(error => {
       console.log(error)
     })
   }
@@ -34,8 +41,22 @@ function ArticleListing({data, approving}) {
       <listing>
         <div className='articleWrap'>
             <p>{data?.name} · {newDate}</p>
-            <h2>{data?.title}</h2>
-            <p className="mainText">{data?.text}</p>
+
+            { (approving === true) ? ( 
+              <div>
+                <a href={`/${data?.uid}`}><h2>{data?.title}</h2></a>
+                <p className="mainText">{data?.text}</p>
+              </div>
+            ) : (
+<div>
+                <a href={`/${data?.uid}`}><h2 className='cutH2'>{data?.title}</h2></a>
+                <p className="mainText cutP">{data?.text}</p>
+              </div>
+            )
+            }
+
+            
+            
             {approving==true && (
             <div><button onClick={updatePost} style={boxes}>&#10004;</button>
             <button onClick={deletePost} style={boxes}>&#10008;</button></div>)
