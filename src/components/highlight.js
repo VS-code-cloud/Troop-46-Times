@@ -1,13 +1,22 @@
 import React, {useRef, useEffect} from "react";
 import '../assets/css/highlight.scss';
 
-function Highlight() {
+function Highlight({data}) {
   const mainRef = useRef(null);
   const sideRef = useRef(null);
   const imgRef = useRef(null);
   const headerRef = useRef(null);
   const paraRef = useRef(null);
-
+  var newDate =''
+  if (data?.createTime) {
+    let dateObj = new Date(data?.createTime)
+  const month   = dateObj.getUTCMonth() + 1; // months from 1-12
+  const day     = dateObj.getUTCDate();
+  const year    = dateObj.getUTCFullYear();
+  const pMonth        = month.toString().padStart(2,"0");
+  const pDay          = day.toString().padStart(2,"0");
+  newDate = `${pMonth}/${pDay}/${year}`;
+  }
   const getStyle = () => {
     
     // max height of box
@@ -18,16 +27,11 @@ function Highlight() {
     console.log(paraRef.current.style)
     
     // clamp paragraph text
-    let imgHeight = window.getComputedStyle(imgRef.current).height;
-    let rawImgHeight = parseInt(imgHeight, 10)
-    let headerHeight = window.getComputedStyle(headerRef.current).height;
-    let rawHeadHeight = parseInt(headerHeight, 10)
-    let maxParaHeight = rawHeight - rawImgHeight - rawHeadHeight- 27;
+    let maxParaHeight = rawHeight-10;
     let maxLines = Math.floor(maxParaHeight / 30);
     paraRef.current.style.lineClamp = maxLines;
     paraRef.current.style["-webkit-line-clamp"] = maxLines;
 
-    console.log("2", imgHeight, rawImgHeight, headerHeight, rawHeadHeight, maxParaHeight, maxLines)
     
   }
 
@@ -36,29 +40,15 @@ function Highlight() {
   return (
       <highlightSection>
         <div className='highlight' ref={mainRef}>
-        <h1>Hi there hello</h1>
-          <img src='https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg'></img>
+        <h1>{data?.title}</h1>{data?.name}, {newDate}
+          <img src={data?.img}></img>
         </div>
 
         <vr></vr>
 
         <div ref={sideRef} className="post">
-            <img ref={imgRef} src='https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg'></img>
-            <h2 ref={headerRef}>Lorem Ipsum dolor set amet lorem ipsum dolor set amet lorem ipsum dolor set amet Lorem Ipsum dolor set amet lorem ipsum dolor set amet lorem ipsum dolor set amet Lorem Ipsum dolor set amet lorem ipsum dolor set amet lorem ipsum dolor set amet</h2>
             <p ref={paraRef}>
-              
-Paragraphs
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
-
-Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
-
-Morbi in sem quis dui placerat ornare. Pellentesque odio nisi euismod in pharetra a ultricies in diam. Sed arcu. Cras consequat.
-
-Praesent dapibus neque id cursus faucibus tortor neque egestas auguae eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi tincidunt quis accumsan porttitor facilisis luctus metus.
-
-Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam gravida non commodo a sodales sit amet nisi.
-
+              {data?.text}
             </p>
         </div>
       </highlightSection>

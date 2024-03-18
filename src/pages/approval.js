@@ -1,20 +1,76 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import '../assets/css/global.scss';
 
 // import components
 import Header from "../components/header";
 import ArticleListing from '../components/articleListing';
 import Footer from "../components/footer";
-
+import axios from "axios";
+const baseUrl = 'http://localhost:4000'
 function Approval() {
-  let data = [{'data1': 'RIP'}, {'data1': 'RIP'}, {'data1': 'RIP'}, {'data1': 'RIP'}, {'data1': 'RIP'}]
+  const [data, setData] = useState([]);
+  console.log('data', data, !data)
+  useEffect(() => {
+    console.log('in use effect')
+    // React advises to declare the async function directly inside useEffect
+    async function getData() {
+      const response = await axios.get(`${baseUrl}/unverified`);
+      console.log('response', response, response.data)
+      setData(response.data);
+    };
+
+    // You need to restrict it at some point
+    // This is just dummy code and should be replaced by actual
+    if (data.length==0) {
+      console.log('getting data')
+      getData();
+  }
+  }, []);
+  /*const testPosts = [{
+    name: 'Abhitej Kanuri',
+    createTime: '3/16/2024',
+    title: "Why I'm the best scout, and how you can be like me too",
+    text: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.`,
+    img: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg'
+  },{
+    name: 'Abhitej Kanuri',
+    createTime: '3/16/2024',
+    title: "Why I'm the best scout, and how you can be like me too",
+    text: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.`,
+    img: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg'
+  },{
+    name: 'Abhitej Kanuri',
+    createTime: '3/16/2024',
+    title: "Why I'm the best scout, and how you can be like me too",
+    text: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.`,
+    img: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg'
+  },{
+    name: 'Abhitej Kanuri',
+    createTime: '3/16/2024',
+    title: "Why I'm the best scout, and how you can be like me too",
+    text: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.`,
+    img: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg'
+  },{
+    name: 'Abhitej Kanuri',
+    createTime: '3/16/2024',
+    title: "Why I'm the best scout, and how you can be like me too",
+    text: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.`,
+    img: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg'
+  },]*/
+  var nkey=0
   return (
     <div>
     <div className='bodyWrapTotal'>
         <Header/>
         <hr/><hr/>   
         {data.map(x=> {
-            return <ArticleListing/>
+          nkey++
+          return <ArticleListing key={nkey} data={x}/>
         })}     
     </div>
     <Footer/>
