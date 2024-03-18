@@ -6,7 +6,7 @@ import '../assets/css/global.scss';
 import '../assets/css/post.scss';
 
 import axios from "axios";
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'https://troop-46-times-backend.onrender.com';
 
 let axiosConfig = {
   headers: {

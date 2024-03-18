@@ -7,7 +7,7 @@ import ArticleListing from '../components/articleListing';
 import Footer from "../components/footer";
 import axios from "axios";
 
-const baseUrl = 'http://localhost:4000'
+const baseUrl = 'https://troop-46-times-backend.onrender.com'
 
 let axiosConfig = {
   headers: {
