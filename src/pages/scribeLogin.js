@@ -40,8 +40,6 @@ import "react-toastify/dist/ReactToastify.css";
     } else {
       window.sessionStorage.setItem('verified', true)
     }
-
-    toast.success("Successfull login");
     window.location.href="/"
   };
   return (
