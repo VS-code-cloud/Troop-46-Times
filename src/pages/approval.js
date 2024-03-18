@@ -70,7 +70,7 @@ function Approval() {
         <hr/><hr/>   
         {data.map(x=> {
           nkey++
-          return <ArticleListing key={nkey} data={x}/>
+          return <ArticleListing key={nkey} data={x} approving={true}/>
         })}     
     </div>
     <Footer/>

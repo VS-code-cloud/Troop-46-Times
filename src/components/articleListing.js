@@ -1,7 +1,11 @@
 import React from "react";
 import '../assets/css/listing.scss';
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+const baseUrl = 'http://localhost:4000'
 
-function ArticleListing({data}) {
+function ArticleListing({data, approving}) {
+  console.log('data, approving', data, approving)
   console.log('received data', data)
   let dateObj = new Date(data?.createTime)
   const month   = dateObj.getUTCMonth() + 1; // months from 1-12
@@ -10,12 +14,32 @@ function ArticleListing({data}) {
   const pMonth        = month.toString().padStart(2,"0");
   const pDay          = day.toString().padStart(2,"0");
   const newDate = `${pMonth}/${pDay}/${year}`;
+  const boxes = {
+    marginRight: "25%",
+    marginLeft: "25%"
+  }
+  function deletePost() {
+    console.log('deleting')
+    axios.delete(`${baseUrl}/delete/${data.uid}`).then(()=> (window.location.reload())).catch(error => {
+      console.log(error)
+    })
+  }
+  function updatePost() {
+    console.log('updating')
+    axios.patch(`${baseUrl}/update/${data.uid}`, {'verified': true}).then(()=> (window.location.reload())).catch(error => {
+      console.log(error)
+    })
+  }
   return (
       <listing>
         <div className='articleWrap'>
             <p>{data?.name} · {newDate}</p>
             <h2>{data?.title}</h2>
             <p className="mainText">{data?.text}</p>
+            {approving==true && (
+            <div><button onClick={updatePost} style={boxes}>&#10004;</button>
+            <button onClick={deletePost} style={boxes}>&#10008;</button></div>)
+            }
         </div>
         <img src={data?.img}></img>
       </listing>
